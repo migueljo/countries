@@ -12,7 +12,7 @@ export const Title = styled.p`
     font-weight: bold;
 `
 
-export const Mode = styled.p`
+export const Mode = styled.div`
     display: flex;
     span {
         margin-left: 7px;

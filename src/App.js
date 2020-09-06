@@ -31,7 +31,7 @@ function App() {
 
   }, [])
 
-  const debounceF = debounce((event) => {
+  const debouncedHandleSearchChange = debounce((event) => {
     const value = event.target.value
 
     if (value.length === 0) {
@@ -47,8 +47,8 @@ function App() {
 
   const handleSearchChange = useCallback((event) => {
     event.persist()
-    debounceF(event);
-  }, [debounceF])
+    debouncedHandleSearchChange(event);
+  }, [debouncedHandleSearchChange])
 
   return (
     <>

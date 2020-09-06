@@ -10,7 +10,7 @@ const options = [
   { value: 'Oceania', label: 'Oceania' },
 ];
 
-export default function App() {
+export default function Dropdown() {
   const [selectedOption, setSelectedOption] = useState(null);
 
   return (

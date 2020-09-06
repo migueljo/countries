@@ -13,6 +13,8 @@ import Countries from './components/Countries/Countries';
 function App() {
   const [countries, setCountries] = useState([])
   const [allCountries, setAllCountries] = useState([])
+  const [search, setSearch] = useState('')
+  const [region, setRegion] = useState('')
 
   useEffect(() => {
     const cachedCountries = localStorage.getItem('countries')
@@ -32,16 +34,13 @@ function App() {
   }, [])
 
   const debouncedHandleSearchChange = debounce((event) => {
-    const value = event.target.value
+    const search = event.target.value
+    setSearch(search)
 
-    if (value.length === 0) {
-      setCountries(allCountries)
-      return
-    }
-
-    const filteredCountries = allCountries.filter(country => {
-      return country.name.toLowerCase().includes(value.toLowerCase())
-    })
+    const filteredCountries = filterCountries(allCountries, [
+      country => filterBySearch(country, search),
+      country => filterByRegion(country, region.value),
+    ])
     setCountries(filteredCountries)
   }, 300)
 
@@ -49,6 +48,15 @@ function App() {
     event.persist()
     debouncedHandleSearchChange(event);
   }, [debouncedHandleSearchChange])
+
+  const handleRegionChange = useCallback((region) => {
+    setRegion(region)
+    const filteredCountries = filterCountries(allCountries, [
+      country => filterBySearch(country, search),
+      country => filterByRegion(country, region.value),
+    ])
+    setCountries(filteredCountries)
+  }, [allCountries, search])
 
   return (
     <>
@@ -59,7 +67,7 @@ function App() {
           <SearchBox onChange={handleSearchChange} />
         </div>
         <div style={{ width: '200px', margin: '30px 0 40px' }}>
-          <Dropdown />
+          <Dropdown onChange={handleRegionChange} />
         </div>
         <Countries countries={countries} />
       </div>
@@ -68,3 +76,19 @@ function App() {
 }
 
 export default App;
+
+function filterCountries(allCountries, filters = []) {
+  let result = allCountries
+  for (const filter of filters) {
+    result = result.filter(filter)
+  }
+  return result
+}
+
+function filterBySearch(country, search) {
+  return country.name.toLowerCase().includes(search.toLowerCase())
+}
+
+function filterByRegion(country, region) {
+  return country.region.toLowerCase().includes(region.toLowerCase())
+}

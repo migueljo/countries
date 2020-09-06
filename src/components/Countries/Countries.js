@@ -6,8 +6,8 @@ export default function Countries({ countries }) {
     return (
       <Styles.Container>
         {countries.map(country => (
-          <Styles.CardContainer>
-            <CountryCard key={country.name} country={country} />
+          <Styles.CardContainer key={country.name}>
+            <CountryCard country={country} />
           </Styles.CardContainer>
         ))}
       </Styles.Container>

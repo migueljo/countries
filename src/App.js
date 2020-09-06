@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header'
 import SearchBox from './components/SearchBox';
 import Dropdown from './components/Dropdown';
-import CountryCard from './components/CountryCard'
 
 import {getCountries} from './data/APIInterface'
 
 import GlobalStyles from './GlobalStyles'
+import Countries from './components/Countries/Countries';
 
 function App() {
   const [countries, setCountries] = useState([])
@@ -37,15 +37,7 @@ function App() {
         <div style={{ width: '200px', margin: '30px 0 40px' }}>
           <Dropdown />
         </div>
-        <div>
-          {
-            countries.map(country => {
-              return (
-                <CountryCard key={country.name} country={country} />
-              )
-            })
-          }
-        </div>
+        <Countries countries={countries} />
       </div>
     </>
   );

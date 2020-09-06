@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 
 export const Container = styled.article`
     box-shadow: 0 0 5px lightgray;
+    border-radius: 4px;
 `
 
 export const ImageCtn = styled.figure`
@@ -12,8 +13,13 @@ export const ImageCtn = styled.figure`
 
 export const Image = styled.img`
     width: 100%;
+    border-radius: 4px 4px 0 0;
 `
 
 export const Content = styled.div`
-    padding: 20px 15px 30px;
+    padding: 5px 15px 30px;
+
+    p {
+        margin: 0 0 5px 0;
+    }
 `

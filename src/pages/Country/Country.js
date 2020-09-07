@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useState, useEffect, useCallback } from 'react'
+import { useParams, useHistory, NavLink, Link } from 'react-router-dom'
 
 import Header from '../../components/Header'
 import Button from '../../components/Button'
@@ -7,14 +7,30 @@ import Button from '../../components/Button'
 import * as Styles from './CountryStyles'
 
 export default function Country() {
-  const { countryName } = useParams()
+  const { countryCode } = useParams()
+  const history = useHistory()
   const [ country, setCountry ] = useState()
+  const [ borders, setBorders ] = useState()
+  const population = country && new Intl.NumberFormat().format(country.population)
+
+  const handleBack = useCallback(() => {
+    history.goBack()
+  }, [history])
 
   useEffect(() => {
     const allCountries = JSON.parse(localStorage.getItem('countries'))
-    const currentCountry = allCountries.find(c => c.name.toLowerCase() === countryName)
+    const currentCountry = allCountries.find(
+      c => c.alpha3Code.toLowerCase() === countryCode.toLowerCase()
+    )
+    const borders = currentCountry.borders.map(border => {
+      const countryBorder = allCountries.find(
+        country => country.alpha3Code.toLowerCase() === border.toLowerCase()
+      )
+      return countryBorder
+    })
+    setBorders(borders)
     setCountry(currentCountry)
-  }, [setCountry, countryName])
+  }, [setCountry, countryCode])
 
   console.log({ country })
 
@@ -22,11 +38,9 @@ export default function Country() {
     <>
       <Header />
       <Styles.Content>
-        <Link to='/' style={{ textDecoration: 'none' }}>
-          <Styles.BackButtonContainer>
-            <Button text='Back' icon='arrow-left' />
-          </Styles.BackButtonContainer>
-        </Link>
+        <Styles.BackButtonContainer>
+          <Button text='Back' icon='arrow-left' onClick={handleBack} />
+        </Styles.BackButtonContainer>
         {
           country && (
             <>
@@ -38,7 +52,7 @@ export default function Country() {
                 <strong>Native Name</strong>: {country.nativeName}
               </Styles.Text>
               <Styles.Text>
-                <strong>Population</strong>: {country.population}
+                <strong>Population</strong>: {population}
               </Styles.Text>
               <Styles.Text>
                 <strong>Region</strong>: {country.region}
@@ -84,9 +98,15 @@ export default function Country() {
               </Styles.Subtitle>
               <Styles.BorderCountries>
                 {
-                  country.borders.map(border => (
-                    <Button text={border} key={border} />
-                  ))
+                  borders.map(border => {
+                    return (
+                      <Styles.BorderCountry key={border.name}>
+                        <Link to={`/country/${border.alpha3Code}`}>
+                          <Button text={border.name} />
+                        </Link>
+                      </Styles.BorderCountry>
+                    )
+                  })
                 }
               </Styles.BorderCountries>
             </>

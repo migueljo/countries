@@ -9,6 +9,7 @@ export const Content = styled.section`
 
 export const BackButtonContainer = styled.div`
   margin: 40px 0 60px;
+  width: 120px;
 `
 
 export const FlagContainer = styled.figure`
@@ -18,6 +19,7 @@ export const FlagContainer = styled.figure`
 
 export const Flag = styled.img`
   width: 100%;
+  box-shadow: 0 0 5px lightgray;
 `
 
 export const Title = styled.h1`
@@ -33,4 +35,14 @@ export const Subtitle = styled.h2`
 export const BorderCountries = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+`
+
+export const BorderCountry = styled.div`
+  width: 31%;
+  max-width: 200px;
+  margin-bottom: 16px;
+  a {
+    text-decoration: none;
+  }
 `

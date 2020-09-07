@@ -38,7 +38,7 @@ export default function Home() {
 
     const filteredCountries = filterCountries(allCountries, [
       country => filterBySearch(country, search),
-      country => filterByRegion(country, region.value),
+      country => filterByRegion(country, region),
     ])
     setCountries(filteredCountries)
   }, 300)
@@ -52,7 +52,7 @@ export default function Home() {
     setRegion(region)
     const filteredCountries = filterCountries(allCountries, [
       country => filterBySearch(country, search),
-      country => filterByRegion(country, region.value),
+      country => filterByRegion(country, region),
     ])
     setCountries(filteredCountries)
   }, [allCountries, search])

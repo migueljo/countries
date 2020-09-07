@@ -16,7 +16,7 @@ function App() {
       <GlobalStyles />
       <Router>
         <Switch>
-          <Route path='/country/:countryName'>
+          <Route path='/country/:countryCode'>
             <Country />
           </Route>
           <Route path='/'>

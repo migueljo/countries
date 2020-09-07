@@ -8,7 +8,11 @@ export default function Countries({ countries }) {
   return (
     <Styles.Container>
       {countries.map(country => (
-        <Link to={`/country/${country.name.toLowerCase()}`} key={country.name} style={{ textDecoration: 'none', color: 'black' }}>
+        <Link
+          to={`/country/${country.alpha3Code.toLowerCase()}`}
+          key={country.alpha3Code}
+          style={{ textDecoration: 'none', color: 'black' }}
+        >
           <Styles.CardContainer>
             <CountryCard country={country} />
           </Styles.CardContainer>

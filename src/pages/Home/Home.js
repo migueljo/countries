@@ -4,8 +4,8 @@ import debounce from 'lodash.debounce'
 import Header from '../../components/Header'
 import SearchBox from '../../components/SearchBox'
 import Dropdown from '../../components/Dropdown'
-
 import Countries from '../../components/Countries'
+import Loader from '../../components/Loader'
 
 import {getCountries} from '../../data/APIInterface'
 
@@ -14,6 +14,7 @@ export default function Home() {
   const [allCountries, setAllCountries] = useState([])
   const [search, setSearch] = useState('')
   const [region, setRegion] = useState('')
+  const [ loading, setLoading ] = useState(true)
 
   useEffect(() => {
     const cachedCountries = localStorage.getItem('countries')
@@ -22,11 +23,13 @@ export default function Home() {
       const allCountries = JSON.parse(cachedCountries)
       setCountries(allCountries)
       setAllCountries(allCountries)
+      setLoading(false)
     } else {
       getCountries().then(countries => {
         localStorage.setItem('countries', JSON.stringify(countries))
         setCountries(countries)
         setAllCountries(countries)
+        setLoading(false)
       })
     }
 
@@ -67,7 +70,9 @@ export default function Home() {
         <div style={{ width: '200px', margin: '30px 0 40px' }}>
           <Dropdown onChange={handleRegionChange} />
         </div>
-        <Countries countries={countries} />
+        {
+          loading ? <Loader /> : <Countries countries={countries} />
+        }
       </div>
     </div>
   )

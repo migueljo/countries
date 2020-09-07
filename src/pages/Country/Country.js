@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { useParams, useHistory, NavLink, Link } from 'react-router-dom'
+import { useParams, useHistory, Link } from 'react-router-dom'
 
 import Header from '../../components/Header'
 import Button from '../../components/Button'
+import Loader from '../../components/Loader'
 
 import * as Styles from './CountryStyles'
 
@@ -11,6 +12,7 @@ export default function Country() {
   const history = useHistory()
   const [ country, setCountry ] = useState()
   const [ borders, setBorders ] = useState()
+  const [ loading, setLoading ] = useState(true)
   const population = country && new Intl.NumberFormat().format(country.population)
 
   const handleBack = useCallback(() => {
@@ -30,9 +32,8 @@ export default function Country() {
     })
     setBorders(borders)
     setCountry(currentCountry)
+    setLoading(false)
   }, [setCountry, countryCode])
-
-  console.log({ country })
 
   return (
     <>
@@ -42,7 +43,7 @@ export default function Country() {
           <Button text='Back' icon='arrow-left' onClick={handleBack} />
         </Styles.BackButtonContainer>
         {
-          country && (
+          loading ? <Loader /> : (
             <>
               <Styles.FlagContainer>
                 <Styles.Flag src={country.flag} />

@@ -14,6 +14,7 @@ export const ImageCtn = styled.figure`
 export const Image = styled.img`
     width: 100%;
     border-radius: 4px 4px 0 0;
+    border-bottom: 1px solid lightgray;
 `
 
 export const Content = styled.div`

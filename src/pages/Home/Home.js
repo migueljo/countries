@@ -86,5 +86,5 @@ function filterBySearch(country, search) {
 }
 
 function filterByRegion(country, region) {
-  return country.region.toLowerCase().includes(region.toLowerCase())
+  return country.region.toLowerCase().includes(region.value.toLowerCase())
 }

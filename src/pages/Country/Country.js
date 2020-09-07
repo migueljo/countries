@@ -101,7 +101,7 @@ export default function Country() {
                   borders.map(border => {
                     return (
                       <Styles.BorderCountry key={border.name}>
-                        <Link to={`/country/${border.alpha3Code}`}>
+                        <Link to={`/country/${border.alpha3Code.toLowerCase()}`}>
                           <Button text={border.name} />
                         </Link>
                       </Styles.BorderCountry>

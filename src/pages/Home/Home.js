@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
 import debounce from 'lodash.debounce'
 
 import Header from '../../components/Header'
@@ -8,6 +8,9 @@ import Countries from '../../components/Countries'
 import Loader from '../../components/Loader'
 
 import {getCountries} from '../../data/APIInterface'
+import { DarkModeContext } from '../../providers/DarkMode';
+
+import * as Styles from './HomeStyles'
 
 export default function Home() {
   const [countries, setCountries] = useState([])
@@ -15,6 +18,7 @@ export default function Home() {
   const [search, setSearch] = useState('')
   const [region, setRegion] = useState('')
   const [ loading, setLoading ] = useState(true)
+  const { darkMode } = useContext(DarkModeContext)
 
   useEffect(() => {
     const cachedCountries = localStorage.getItem('countries')
@@ -61,7 +65,7 @@ export default function Home() {
   }, [allCountries, search])
 
   return (
-    <div>
+    <Styles.Container darkMode={darkMode}>
       <Header />
       <div style={{ width: '100%', maxWidth: '90%', margin: 'auto' }}>
         <div style={{ margin: '30px 0 40px' }}>
@@ -74,7 +78,7 @@ export default function Home() {
           loading ? <Loader /> : <Countries countries={countries} />
         }
       </div>
-    </div>
+    </Styles.Container>
   )
 }
 

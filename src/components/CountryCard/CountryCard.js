@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import * as Styles from './CountryCardStyles'
+import { DarkModeContext } from '../../providers/DarkMode'
 
 export default function CountryCard({ country }) {
+  const { darkMode } = useContext(DarkModeContext)
   const population = new Intl.NumberFormat().format(country.population)
 
   return (
-    <Styles.Container>
+    <Styles.Container darkMode={darkMode}>
       <Styles.ImageCtn>
         <Styles.Image src={country.flag} />
       </Styles.ImageCtn>

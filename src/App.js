@@ -8,11 +8,13 @@ import {
 import Home from './pages/Home/Home';
 import Country from './pages/Country/index';
 
+import DarkModeProvider from './providers/DarkMode';
+
 import GlobalStyles from './GlobalStyles'
 
 function App() {
   return (
-    <>
+    <DarkModeProvider>
       <GlobalStyles />
       <Router>
         <Switch>
@@ -24,7 +26,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </>
+    </DarkModeProvider>
   );
 }
 

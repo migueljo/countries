@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
 import { useParams, useHistory, Link } from 'react-router-dom'
 
 import Header from '../../components/Header'
 import Button from '../../components/Button'
 import Loader from '../../components/Loader'
+
+import { DarkModeContext } from '../../providers/DarkMode';
 
 import * as Styles from './CountryStyles'
 
@@ -13,6 +15,7 @@ export default function Country() {
   const [ country, setCountry ] = useState()
   const [ borders, setBorders ] = useState()
   const [ loading, setLoading ] = useState(true)
+  const { darkMode } = useContext(DarkModeContext)
   const population = country && new Intl.NumberFormat().format(country.population)
 
   const handleBack = useCallback(() => {
@@ -36,7 +39,7 @@ export default function Country() {
   }, [setCountry, countryCode])
 
   return (
-    <>
+    <Styles.Container darkMode={darkMode}>
       <Header />
       <Styles.Content>
         <Styles.BackButtonContainer>
@@ -114,6 +117,6 @@ export default function Country() {
           )
         }
       </Styles.Content>
-    </>
+    </Styles.Container>
   )
 }

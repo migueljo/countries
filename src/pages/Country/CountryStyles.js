@@ -1,6 +1,13 @@
 import styled from '@emotion/styled'
+import { css } from '@emotion/core';
 
-export const Content = styled.section`
+export const Container = styled.div`
+  width: 100vw;
+  min-height: 100vh;
+  ${getModeStyles}
+`;
+
+export const Content = styled.div`
   width: 100%;
   max-width: 90%;
   margin: auto;
@@ -19,7 +26,6 @@ export const FlagContainer = styled.figure`
 
 export const Flag = styled.img`
   width: 100%;
-  box-shadow: 0 0 5px lightgray;
 `
 
 export const Title = styled.h1`
@@ -46,3 +52,24 @@ export const BorderCountry = styled.div`
     text-decoration: none;
   }
 `
+
+function getModeStyles(props) {
+  if (!props.darkMode) return css`
+    background-color: white;
+    box-shadow: 0 0 5px lightgray;
+
+    ${Flag} {
+      box-shadow: 0 0 5px lightgray;
+    }
+  `
+
+  return css`
+    background-color: #2a3843;
+    box-shadow: 0 0 5px #1e2c34;
+    color: white;
+
+    ${Flag} {
+      box-shadow: 0 0 5px #1e2c34;
+    }
+  `
+}

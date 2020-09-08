@@ -34,5 +34,6 @@ function getDarkModeStyles(props) {
   return css`
     background-color: #2a3843;
     color: white;
+    box-shadow: 0 0 5px #1e2c34;
   `
 }

@@ -16,7 +16,7 @@ export default function Home() {
   const [countries, setCountries] = useState([])
   const [allCountries, setAllCountries] = useState([])
   const [search, setSearch] = useState('')
-  const [region, setRegion] = useState('')
+  const [region, setRegion] = useState({ value: '' })
   const [ loading, setLoading ] = useState(true)
   const { darkMode } = useContext(DarkModeContext)
 

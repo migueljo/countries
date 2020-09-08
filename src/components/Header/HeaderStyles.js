@@ -32,6 +32,7 @@ function getModeStyles(props) {
   return css`
     background-color: #2a3843;
     color: white;
+    box-shadow: 0 2px 4px #1e2c34;
 
     ${Mode} {
       color: white;

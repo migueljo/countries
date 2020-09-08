@@ -1,31 +1,34 @@
 // import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
-const customStyles = {
+export default (darkMode) => ({
   control: (styles) => css`
     ${styles}
-    box-shadow: 0 0 5px lightgray;
     display: flex;
     height: 55px;
     border: none;
     padding: 0 10px 0 20px;
+    box-shadow: 0 0 5px ${darkMode ? '#1e2c34' : 'lightgray'};
+    background-color: ${darkMode ? '#2a3843' : 'white'};
   `,
   menu: (styles) => css`
     ${styles};
     padding: 10px 25px;
+    background-color: ${darkMode ? '#2a3843' : 'white'};
   `,
   option: () => css`
     padding: 5px;
-    color: black;
+    color: ${darkMode ? 'white' : 'black'};
+  `,
+  singleValue: () => css`
+    color: ${darkMode ? 'white' : 'black'};
   `,
   indicatorSeparator: () => ({}),
   dropdownIndicator: (styles) => css`
     ${styles}
-    color: gray;
+    color: ${darkMode ? 'white' : 'gray'};
   `,
   placeholder: () => css`
-    color: black;
+    color: ${darkMode ? 'white' : 'black'};
   `
-}
-
-export default customStyles
+})

@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
-import Select from 'react-select';
-import styles from './DropdownStyles'
+import React, { useState, useCallback, useContext } from 'react'
+import Select from 'react-select'
+import getStyles from './DropdownStyles'
+import { DarkModeContext } from '../../providers/DarkMode'
 
 const options = [
   { value: 'africa', label: 'Africa' },
@@ -8,11 +9,12 @@ const options = [
   { value: 'asia', label: 'Asia' },
   { value: 'europe', label: 'Europe' },
   { value: 'oceania', label: 'Oceania' },
-];
+]
 
 export default function Dropdown(props) {
-  const [value, setValue] = useState();
-  const [prevValue, setPrevValue] = useState();
+  const [value, setValue] = useState()
+  const [prevValue, setPrevValue] = useState()
+  const { darkMode } = useContext(DarkModeContext)
   const hangleChange = useCallback((option) => {
     if (props.onChange) props.onChange(option)
   }, [props])
@@ -33,7 +35,7 @@ export default function Dropdown(props) {
         options={options}
         isSearchable={false}
         placeholder='Filter by Region'
-        styles={styles}
+        styles={getStyles(darkMode)}
     />
-  );
+  )
 }

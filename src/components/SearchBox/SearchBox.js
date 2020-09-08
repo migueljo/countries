@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
 
 import Icon from '../Icon';
 
 import * as Styles from './SearchBoxStyles'
+import { DarkModeContext } from '../../providers/DarkMode';
 
 export default function SearchBox({ onChange, value: propValue = '' }) {
   const [value, setValue] = useState('')
   const [prevValue, setPrevValue] = useState('')
+  const { darkMode } = useContext(DarkModeContext)
 
   const handleChange = useCallback((event) => {
     if (onChange) onChange(event)
@@ -23,7 +25,7 @@ export default function SearchBox({ onChange, value: propValue = '' }) {
   }, [prevValue, propValue, value, onChange])
 
   return (
-    <Styles.Container>
+    <Styles.Container darkMode={darkMode}>
       <Styles.IconContainer>
         <Icon name='search' />
       </Styles.IconContainer>

@@ -47,73 +47,81 @@ export default function Country() {
         </Styles.BackButtonContainer>
         {
           loading ? <Loader /> : (
-            <>
+            <Styles.Country>
               <Styles.FlagContainer>
                 <Styles.Flag src={country.flag} />
               </Styles.FlagContainer>
-              <Styles.Title>{country.name}</Styles.Title>
-              <Styles.Text>
-                <strong>Native Name</strong>: {country.nativeName}
-              </Styles.Text>
-              <Styles.Text>
-                <strong>Population</strong>: {population}
-              </Styles.Text>
-              <Styles.Text>
-                <strong>Region</strong>: {country.region}
-              </Styles.Text>
-              <Styles.Text>
-                <strong>Sub Region</strong>: {country.subregion}
-              </Styles.Text>
-              <Styles.Text>
-                <strong>Capital</strong>: {country.capital}
-              </Styles.Text>
-              <Styles.Text>
-                <strong>Top Level Domain:</strong>
-                {
-                  country.topLevelDomain.map((domain, i) => (
-                    <span key={domain}>
-                      {i === 0 ? ` ${domain}` : `, ${domain}`}
-                    </span>
-                  ))
-                }
-              </Styles.Text>
-              <Styles.Text>
-                <strong>Currencies:</strong>
-                {
-                  country.currencies.map((currency, i) => (
-                    <span key={currency.code}>
-                      {i === 0 ? ` ${currency.name}` : `, ${currency.name}`}
-                    </span>
-                  ))
-                }
-              </Styles.Text>
-              <Styles.Text>
-                <strong>Languages:</strong>
-                {
-                  country.languages.map((lan, i) => (
-                    <span key={lan.iso639_1}>
-                      {i === 0 ? ` ${lan.name}` : `, ${lan.name}`}
-                    </span>
-                  ))
-                }
-              </Styles.Text>
-              <Styles.Subtitle>
-                Border Countries
-              </Styles.Subtitle>
-              <Styles.BorderCountries>
-                {
-                  borders.map(border => {
-                    return (
-                      <Styles.BorderCountry key={border.name}>
-                        <Link to={`/country/${border.alpha3Code.toLowerCase()}`}>
-                          <Button text={border.name} />
-                        </Link>
-                      </Styles.BorderCountry>
-                    )
-                  })
-                }
-              </Styles.BorderCountries>
-            </>
+              <Styles.CountryInfo>
+                <Styles.Title>{country.name}</Styles.Title>
+                <Styles.Texts>
+                  <Styles.Left>
+                    <Styles.Text>
+                      <strong>Native Name</strong>: {country.nativeName}
+                    </Styles.Text>
+                    <Styles.Text>
+                      <strong>Population</strong>: {population}
+                    </Styles.Text>
+                    <Styles.Text>
+                      <strong>Region</strong>: {country.region}
+                    </Styles.Text>
+                    <Styles.Text>
+                      <strong>Sub Region</strong>: {country.subregion}
+                    </Styles.Text>
+                    <Styles.Text>
+                      <strong>Capital</strong>: {country.capital}
+                    </Styles.Text>
+                  </Styles.Left>
+                  <Styles.Right>
+                    <Styles.Text>
+                      <strong>Top Level Domain:</strong>
+                      {
+                        country.topLevelDomain.map((domain, i) => (
+                          <span key={domain}>
+                            {i === 0 ? ` ${domain}` : `, ${domain}`}
+                          </span>
+                        ))
+                      }
+                    </Styles.Text>
+                    <Styles.Text>
+                      <strong>Currencies:</strong>
+                      {
+                        country.currencies.map((currency, i) => (
+                          <span key={currency.code}>
+                            {i === 0 ? ` ${currency.name}` : `, ${currency.name}`}
+                          </span>
+                        ))
+                      }
+                    </Styles.Text>
+                    <Styles.Text>
+                      <strong>Languages:</strong>
+                      {
+                        country.languages.map((lan, i) => (
+                          <span key={lan.iso639_1}>
+                            {i === 0 ? ` ${lan.name}` : `, ${lan.name}`}
+                          </span>
+                        ))
+                      }
+                    </Styles.Text>
+                  </Styles.Right>
+                </Styles.Texts>
+                <Styles.Subtitle>
+                  Border Countries
+                </Styles.Subtitle>
+                <Styles.BorderCountries>
+                  {
+                    borders.map(border => {
+                      return (
+                        <Styles.BorderCountry key={border.name}>
+                          <Link to={`/country/${border.alpha3Code.toLowerCase()}`}>
+                            <Button text={border.name} />
+                          </Link>
+                        </Styles.BorderCountry>
+                      )
+                    })
+                  }
+                </Styles.BorderCountries>
+              </Styles.CountryInfo>
+            </Styles.Country>
           )
         }
       </Styles.Content>

@@ -15,7 +15,9 @@ export const ImageCtn = styled.figure`
 `
 
 export const Image = styled.img`
+  object-fit: cover;
   width: 100%;
+  height: 200px;
   border-radius: 4px 4px 0 0;
   border-bottom: 1px solid lightgray;
 `

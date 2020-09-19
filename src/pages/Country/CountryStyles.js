@@ -5,11 +5,12 @@ export const Container = styled.div`
   width: 100vw;
   min-height: 100vh;
   ${getModeStyles}
+  ${getResponsiveStyles}
 `;
 
 export const Content = styled.div`
-  width: 100%;
-  max-width: 90%;
+  width: 90%;
+  max-width: 1200px;
   margin: auto;
   padding-bottom: 60px;
 `
@@ -19,9 +20,19 @@ export const BackButtonContainer = styled.div`
   width: 120px;
 `
 
+export const Country = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 export const FlagContainer = styled.figure`
   padding: 0;
   margin: 0 0 50px 0;
+`
+
+export const CountryInfo = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
 export const Flag = styled.img`
@@ -31,6 +42,12 @@ export const Flag = styled.img`
 export const Title = styled.h1`
   margin-bottom: 30px;
 `
+
+export const Texts = styled.div``
+
+export const Left = styled.div``
+
+export const Right = styled.div``
 
 export const Text = styled.p``
 
@@ -70,6 +87,37 @@ function getModeStyles(props) {
 
     ${Flag} {
       box-shadow: 0 0 5px #1e2c34;
+    }
+  `
+}
+
+function getResponsiveStyles(props) {
+  return css`
+    @media (min-width: 1000px) {
+      ${Country} {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      ${FlagContainer} {
+        width: 40%;
+      }
+
+      ${CountryInfo} {
+        width: 55%;
+      }
+
+      ${Title} {
+        margin-top: 0;
+      }
+
+      ${Texts} {
+        display: flex;
+      }
+
+      ${Left}, ${Right} {
+        width: 50%;
+      }
     }
   `
 }

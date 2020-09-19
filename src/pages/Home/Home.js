@@ -67,7 +67,7 @@ export default function Home() {
   return (
     <Styles.Container darkMode={darkMode}>
       <Header />
-      <div style={{ width: '100%', maxWidth: '90%', margin: 'auto' }}>
+      <Styles.Body>
         <div style={{ margin: '30px 0 40px' }}>
           <SearchBox onChange={handleSearchChange} />
         </div>
@@ -77,7 +77,7 @@ export default function Home() {
         {
           loading ? <Loader /> : <Countries countries={countries} />
         }
-      </div>
+      </Styles.Body>
     </Styles.Container>
   )
 }

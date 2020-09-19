@@ -68,12 +68,14 @@ export default function Home() {
     <Styles.Container darkMode={darkMode}>
       <Header />
       <Styles.Body>
-        <div style={{ margin: '30px 0 40px' }}>
-          <SearchBox onChange={handleSearchChange} />
-        </div>
-        <div style={{ width: '200px', margin: '30px 0 40px' }}>
-          <Dropdown onChange={handleRegionChange} />
-        </div>
+        <Styles.BodyHeader>
+          <Styles.SearchContainer>
+            <SearchBox onChange={handleSearchChange} />
+          </Styles.SearchContainer>
+          <Styles.DropdownContainer>
+            <Dropdown onChange={handleRegionChange} />
+          </Styles.DropdownContainer>
+        </Styles.BodyHeader>
         {
           loading ? <Loader /> : <Countries countries={countries} />
         }

@@ -1,5 +1,6 @@
-// import styled from '@emotion/styled'
 import { css } from '@emotion/core'
+
+import colors from '../../colors'
 
 export default (darkMode) => ({
   control: (styles) => css`
@@ -8,27 +9,27 @@ export default (darkMode) => ({
     height: 55px;
     border: none;
     padding: 0 10px 0 20px;
-    box-shadow: 0 0 5px ${darkMode ? '#1e2c34' : 'lightgray'};
-    background-color: ${darkMode ? '#2a3843' : 'white'};
+    box-shadow: 0 0 5px ${darkMode ? colors.ebonyClay : colors.lightGray};
+    background-color: ${darkMode ? colors.oxfordBlue : colors.white};
   `,
   menu: (styles) => css`
     ${styles};
     padding: 10px 25px;
-    background-color: ${darkMode ? '#2a3843' : 'white'};
+    background-color: ${darkMode ? colors.oxfordBlue : colors.white};
   `,
   option: () => css`
     padding: 5px;
-    color: ${darkMode ? 'white' : 'black'};
+    color: ${darkMode ? colors.white : colors.black};
   `,
   singleValue: () => css`
-    color: ${darkMode ? 'white' : 'black'};
+    color: ${darkMode ? colors.white : colors.black};
   `,
   indicatorSeparator: () => ({}),
   dropdownIndicator: (styles) => css`
     ${styles}
-    color: ${darkMode ? 'white' : 'gray'};
+    color: ${darkMode ? colors.white : colors.gray};
   `,
   placeholder: () => css`
-    color: ${darkMode ? 'white' : 'black'};
+    color: ${darkMode ? colors.white : colors.black};
   `
 })

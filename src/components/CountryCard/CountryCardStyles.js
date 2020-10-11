@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/core';
 
+import colors from '../../colors'
+
 export const Container = styled.article`
-  box-shadow: 0 0 5px lightgray;
   border-radius: 4px;
 
   ${getDarkModeStyles}
@@ -19,7 +20,7 @@ export const Image = styled.img`
   width: 100%;
   height: 200px;
   border-radius: 4px 4px 0 0;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid ${colors.lightGray};
 `
 
 export const Content = styled.div`
@@ -31,11 +32,13 @@ export const Content = styled.div`
 `
 
 function getDarkModeStyles(props) {
-  if (!props.darkMode) return ''
+  if (!props.darkMode) return css`
+    box-shadow: 0 0 5px ${colors.lightGray};
+  `
 
   return css`
-    background-color: #2a3843;
-    color: white;
-    box-shadow: 0 0 5px #1e2c34;
+    background-color: ${colors.oxfordBlue};
+    box-shadow: 0 0 5px ${colors.ebonyClay};
+    color: ${colors.white};
   `
 }

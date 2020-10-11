@@ -1,9 +1,12 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/core';
 
+import colors from '../../colors'
+
 export const Container = styled.div`
   width: 100vw;
   min-height: 100vh;
+
   ${getModeStyles}
   ${getResponsiveStyles}
 `;
@@ -72,21 +75,21 @@ export const BorderCountry = styled.div`
 
 function getModeStyles(props) {
   if (!props.darkMode) return css`
-    background-color: white;
-    box-shadow: 0 0 5px lightgray;
+    background-color: ${colors.white};
+    box-shadow: 0 0 5px ${colors.lightGray};
 
     ${Flag} {
-      box-shadow: 0 0 5px lightgray;
+      box-shadow: 0 0 5px ${colors.lightGray};
     }
   `
 
   return css`
-    background-color: #2a3843;
-    box-shadow: 0 0 5px #1e2c34;
-    color: white;
+    background-color: ${colors.oxfordBlue};
+    box-shadow: 0 0 5px ${colors.ebonyClay};
+    color: ${colors.white};
 
     ${Flag} {
-      box-shadow: 0 0 5px #1e2c34;
+      box-shadow: 0 0 5px ${colors.ebonyClay};
     }
   `
 }

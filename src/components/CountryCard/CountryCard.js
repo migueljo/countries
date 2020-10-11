@@ -9,7 +9,7 @@ export default function CountryCard({ country }) {
   return (
     <Styles.Container darkMode={darkMode}>
       <Styles.ImageCtn>
-        <Styles.Image src={country.flag} />
+        <Styles.Image src={country.flag} loading="lazy" />
       </Styles.ImageCtn>
       <Styles.Content>
         <h3>{country.name}</h3>

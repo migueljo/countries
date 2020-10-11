@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/core';
 
+import colors from '../../colors'
+
 export const Container = styled.div`
   position: relative;
 
@@ -15,7 +17,7 @@ export const IconContainer = styled.div`
 `
 
 export const Input = styled.input`
-  box-shadow: 0 0 5px lightgray;
+  box-shadow: 0 0 5px ${colors.lightGray};
   padding: 20px 20px 20px 60px;
   border-radius: 4px;
   border: none;
@@ -26,14 +28,14 @@ function getModeStyles(props) {
   if (!props.darkMode) return ''
 
   return css`
-    color: white;
+    color: ${colors.white};
 
     ${Input} {
-      background-color: #2a3843;
-      box-shadow: 0 0 5px #1e2c34;
-      color: white;
+      background-color: ${colors.oxfordBlue};
+      box-shadow: 0 0 5px ${colors.ebonyClay};
+      color: ${colors.white};
       &::placeholder {
-        color: white;
+        color: ${colors.white};
       }
     }
   `

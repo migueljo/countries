@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/core';
 
+import colors from '../../colors';
+
 export const Button = styled.button`
   padding: 10px;
   border: none;
@@ -9,10 +11,11 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   width: 100%;
+  cursor: pointer;
   ${getModeStyles}
 
   &:hover {
-    box-shadow: 0 0 8px gray;
+    box-shadow: 0 0 8px ${colors.gray};
   }
 
   p {
@@ -25,13 +28,13 @@ export const Button = styled.button`
 
 function getModeStyles(props) {
   if (!props.darkMode) return css`
-    background-color: white;
-    box-shadow: 0 0 8px lightgray;
+    background-color: ${colors.white};
+    box-shadow: 0 0 8px ${colors.lightGray};
   `
 
   return css`
-    background-color: #2a3843;
-    box-shadow: 0 0 8px #1e2c34;
-    color: white;
+    background-color: ${colors.oxfordBlue};
+    box-shadow: 0 0 8px ${colors.ebonyClay};
+    color: ${colors.white};
   `
 }
